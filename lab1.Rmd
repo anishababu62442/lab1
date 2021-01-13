@@ -1,0 +1,15 @@
+---
+title: "lab1"
+author: "Anisha and Shijing "
+date: "1/13/2021"
+output: html_document
+---
+
+``` {r setup}
+```
+
+```{r plot 1}
+````
+
+```{r plot 2}
+```
