@@ -1,5 +1,5 @@
 ---
-title: "lab1"
+title: "EDLD Lab-1"
 author: "Anisha and Shijing "
 date: "1/13/2021"
 output: html_document
