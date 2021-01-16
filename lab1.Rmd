@@ -21,15 +21,13 @@ library(tidyverse)
 library(ggridges)
 
 rstats_tweets <- readRDS(here("data", "rstats_tweets.rds"))
-```
 
-```{r}
 # create new variable
 rstats_tweets2 <- rstats_tweets %>%
   select(created_at) %>%
   mutate(months = lubridate::round_date(created_at, unit = "month")) 
 
-# rough draft
+# rough plot
 rstats_tweets2 %>%
   count(months) %>%
   ggplot(aes(x = months, y = n)) +
@@ -37,9 +35,19 @@ rstats_tweets2 %>%
   geom_smooth() +
   scale_x_datetime(limits = as.POSIXct(c("2008-09-01 00:00:00","2018-12-12 00:00:00")))
 
-# final
+# final plot
+rstats_tweets2 %>%
+  count(months) %>%
+  ggplot() +
+  geom_ridgeline(aes(x = months, y = 0, height = n), 
+                 color = 'gray40', fill = 'steelblue1', alpha = 0.5) +
+  geom_smooth(aes(x = months, y = n), se = FALSE, color = 'maroon2') +
+  theme_minimal() +
+  labs(x = "Year (data summarized by month",
+       y = "Number of #rstats tweets",  
+       title = "Growth of the #rstats hashtag on twitter over time",
+       caption = "Data from Mike Kearney, distributed via #tidytuesday")
 
-  
 ```
 
 
