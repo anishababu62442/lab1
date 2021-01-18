@@ -26,6 +26,13 @@ screen_name_count <-
   dplyr::arrange(desc(n)) %>% 
   dplyr::top_n(25, n) 
 
+# rough plot 
+screen_name_count %>% 
+  ggplot(aes(reorder(screen_name, n), n)) + 
+  geom_col() + 
+  coord_flip()
+
+# final plot
 screen_name_count %>% 
   ggplot(aes(reorder(screen_name, n), n)) + 
   geom_col(color = "white", 
