@@ -20,11 +20,22 @@ screen_name_count <-
 screen_name_count <-
   screen_name_count %>% 
   dplyr::arrange(desc(n)) %>% 
-  dplyr::top_n(25, n)
+  dplyr::top_n(25, n) 
 
 screen_name_count %>% 
   ggplot(aes(reorder(screen_name, n), n)) + 
-  geom_col() + 
+  geom_col(color = "white", 
+           fill = "cornflowerblue",
+           alpha = 0.9) + 
+  labs(title = "Most prolific #rstats tweeters",
+       subtitle = "Top 25 screen names displayed",
+       x = "Twitter Screen Name",
+       y ="Count",
+       caption = "Data from Mike Kearny, distributed via #tidytuesday") +
+  theme(panel.grid.major.x = element_line(color = "grey"),
+        panel.background = element_rect(fill = NA)) +
+  #scale_y_discrete(expand = c(0,0)) +
+  #why adding scale_y_discrete to remove the margin cancel my theme setting? 
   coord_flip()
 
 ```
