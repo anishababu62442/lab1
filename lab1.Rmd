@@ -9,7 +9,25 @@ output: html_document
 ```
 
 ```{r plot 1}
-````
+library(tidyverse)
+
+rstats_tweets <- readRDS(here::here("data", "rstats_tweets.rds"))
+
+screen_name_count <- 
+  rstats_tweets %>% 
+  dplyr::count(screen_name)
+
+screen_name_count <-
+  screen_name_count %>% 
+  dplyr::arrange(desc(n)) %>% 
+  dplyr::top_n(25, n)
+
+screen_name_count %>% 
+  ggplot(aes(reorder(screen_name, n), n)) + 
+  geom_col() + 
+  coord_flip()
+
+```
 
 ```{r plot 2}
 ```
