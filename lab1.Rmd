@@ -8,13 +8,15 @@ editor_options:
 ---
 
 ``` {r setup}
+library(here)
+library(lubridate)
+library(tidyverse)
+library(ggridges)
+
+rstats_tweets <- readRDS(here("data", "rstats_tweets.rds"))
 ```
 
 ```{r plot 1}
-library(tidyverse)
-
-rstats_tweets <- readRDS(here::here("data", "rstats_tweets.rds"))
-
 screen_name_count <- 
   rstats_tweets %>% 
   dplyr::count(screen_name)
@@ -42,14 +44,6 @@ screen_name_count %>%
 ```
 
 ```{r plot 2}
-library(here)
-library(dplyr)
-library(lubridate)
-library(tidyverse)
-library(ggridges)
-
-rstats_tweets <- readRDS(here("data", "rstats_tweets.rds"))
-
 # create new variable
 rstats_tweets2 <- rstats_tweets %>%
   select(created_at) %>%
