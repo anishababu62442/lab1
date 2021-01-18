@@ -34,7 +34,7 @@ screen_name_count %>%
        caption = "Data from Mike Kearny, distributed via #tidytuesday") +
   theme(panel.grid.major.x = element_line(color = "grey"),
         panel.background = element_rect(fill = NA)) +
-  #scale_y_discrete(expand = c(0,0)) +
+  scale_y_continuous(expand = c(0,0)) +
   #why adding scale_y_discrete to remove the margin cancel my theme setting? 
   coord_flip()
 
