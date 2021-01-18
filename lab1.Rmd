@@ -1,5 +1,5 @@
 ---
-title: "lab1"
+title: "EDLD Lab-1"
 author: "Anisha and Shijing "
 date: "1/13/2021"
 output: html_document
@@ -11,6 +11,34 @@ editor_options:
 ```
 
 ```{r plot 1}
+library(tidyverse)
+
+rstats_tweets <- readRDS(here::here("data", "rstats_tweets.rds"))
+
+screen_name_count <- 
+  rstats_tweets %>% 
+  dplyr::count(screen_name)
+
+screen_name_count <-
+  screen_name_count %>% 
+  dplyr::arrange(desc(n)) %>% 
+  dplyr::top_n(25, n) 
+
+screen_name_count %>% 
+  ggplot(aes(reorder(screen_name, n), n)) + 
+  geom_col(color = "white", 
+           fill = "cornflowerblue",
+           alpha = 0.9) + 
+  labs(title = "Most prolific #rstats tweeters",
+       subtitle = "Top 25 screen names displayed",
+       x = "Twitter Screen Name",
+       y ="Count",
+       caption = "Data from Mike Kearny, distributed via #tidytuesday") +
+  theme(panel.grid.major.x = element_line(color = "grey"),
+        panel.background = element_rect(fill = NA)) +
+  scale_y_continuous(expand = c(0,0)) +
+  coord_flip()
+
 ```
 
 ```{r plot 2}
